@@ -1,0 +1,16 @@
+html
+html
+	head
+		title Home
+		style
+			include styles.css
+		link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css")
+	body
+		div(class="welcome_msg")
+			h1 my happy time
+			h3 this is <i>your</i> private time 😁
+			button(class="btn waves-effect waves-light" type = "Submit" onclick="register()") Sign Up
+script.
+	function register(){
+		window.location.href='/register'
+	}

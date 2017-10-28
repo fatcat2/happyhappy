@@ -1,15 +1,6 @@
 var express = require('express');
-// var fs = require('fs');
-// var http = require('http');
-// var https = require('https');
-
-// var privateKey  = fs.readFileSync('domain.key');
-// var certificate = fs.readFileSync('domain.crt');
-// var credentials = {
-// 	key: privateKey,
-// 	cert: certificate
-// }
-
+var emoji = require('node-emoji');
+// var wink = emoji.get
 var app = express();
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
@@ -17,15 +8,26 @@ var url = "mongodb://root:123@myhappytime-shard-00-00-mqmxc.mongodb.net:27017,my
 var randomstring = require('randomstring');
 
 app.use(bodyParser());
+
 app.get('/', function(req, res){
+	res.render('index');
+});
+
+app.get('/register', function(req, res){
 	res.render('form');
 });
+
 app.set('view engine', 'pug');
+
 app.set('views', './views');
 
-app.post('/', function(req, res){
+app.post('/register', function(req, res){
 	MongoClient.connect(url, function(err, db) {
 	  if (err) throw err;
+	  var confirm_code = randomstring.generate({
+	  	length: 4,
+	  	charset: 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789'
+	  })
 	  var doc = {
 	  	"roomie1": req.body.roomie1,
 	  	"roomie1_number": req.body.roomie1_number,
@@ -34,10 +36,7 @@ app.post('/', function(req, res){
 	  	"roomie2_number": req.body.roomie2_number,
 	  	"roomie2_email": req.body.roomie2_email,
 	  	"password": req.body.password,
-	  	"confirm code": randomstring.generate({
-	  		length: 4,
-	  		charset: 'ABCDEFGHJKLMNPQRTSTUVWXYZ123456789'
-	  	})
+	  	"confirm code": confirm_code
 	  }
 	  db.collection("users").insertOne(doc, function(err, res){
 	  	if (err) throw err;
@@ -51,7 +50,7 @@ app.post('/', function(req, res){
 
 app.post('/alexa', function(req, res){
 
-})
+});
 
 
 app.listen(3000, function () {
