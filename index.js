@@ -10,6 +10,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://root:123@myhappytime-shard-00-00-mqmxc.mongodb.net:27017,myhappytime-shard-00-01-mqmxc.mongodb.net:27017,myhappytime-shard-00-02-mqmxc.mongodb.net:27017/happy_data?ssl=true&replicaSet=myhappytime-shard-0&authSource=admin"
+var randomstring = require('randomstring');
 
 app.use(bodyParser());
 
@@ -29,7 +30,12 @@ app.post('/', function(req, res){
 	  	"roomie1_email": req.body.roomie1_email,
 	  	"roomie2": req.body.roomie2,
 	  	"roomie2_number": req.body.roomie2_number,
-	  	"roomie2_email": req.body.roomie2_email
+	  	"roomie2_email": req.body.roomie2_email,
+	  	"password": req.body.password,
+	  	"confirm code": randomstring.generate({
+	  		length: 4,
+	  		charset: 'ABCDEFGHJKLMNPQRTSTUVWXYZ123456789'
+	  	})
 	  }
 	  db.collection("users").insertOne(doc, function(err, res){
 	  	if (err) throw err;
