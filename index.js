@@ -1,4 +1,11 @@
 var express = require('express');
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+
+var privateKey  = fs.readFileSync('server.key', 'utf8');
+var certificate = fs.readFileSync('server.crt', 'utf8');
+
 var app = express();
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
@@ -37,6 +44,8 @@ app.post('/', function(req, res){
 
 
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-})
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(8080);
+httpsServer.listen(8443);
