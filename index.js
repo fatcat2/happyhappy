@@ -50,6 +50,7 @@ app.post('/register', function(req, res){
 });
 
 app.post('/textroommate', function(req, res){
+	console.log(req)
 	console.log("hey i work");
 });
 
