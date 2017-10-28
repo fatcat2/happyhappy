@@ -3,8 +3,8 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 
-var privateKey  = fs.readFileSync('server.key', 'utf8');
-var certificate = fs.readFileSync('server.crt', 'utf8');
+var privateKey  = fs.readFileSync('domain.key', 'utf8');
+var certificate = fs.readFileSync('domain.crt', 'utf8');
 
 var app = express();
 var bodyParser = require('body-parser');
