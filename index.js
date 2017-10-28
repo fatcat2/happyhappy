@@ -55,7 +55,7 @@ app.post('/textroommate', function(req, res){
 
 app.get('/textroommate', function(req, res){
 	res.send("Thanks for the info!");
-})
+});
 
 
 app.listen(3000, function () {

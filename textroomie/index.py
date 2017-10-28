@@ -1,6 +1,5 @@
-import urllib.parse
-from socket import timeout
-import requests
+import urllib
+from urllib import requests, parse
 import json
 
 API_BASE="http://myhappyti.me:3000/textroommate"
@@ -78,12 +77,15 @@ def text_roommate(intent):
 
         if (code_string != "unkn"):
             print("Gonna go find happy time now!")
-            r = requests.post(API_BASE, {'key':'1969'})
-            # from urllib import request, parse
-            # data = bytes(parse.urlencode({'key':'1654'}).encode())
-            # print("configuring post")
-            # req = url.Request(API_BASE, data) # this will make the method "POST"
-            # resp = url.urlopen(API_BASE, data)
+            data = parse.urlencode({"key": "1456"}).encode()
+            req = request.Request(API_BASE)
+            try:
+                # perform HTTP POST request
+                with request.urlopen(req, data) as f:
+                    print("It returned {}".format(str(f.read().decode('utf-8'))))
+            except Exception as e:
+                # something went wrong!
+                return e
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
