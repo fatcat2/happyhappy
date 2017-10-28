@@ -6,6 +6,9 @@ body{
 h2{
 	text-align: center;
 }
+div.scroll{
+	overflow: auto;
+}
 div.signup_text{
 	/*text-align: center;*/
 	position: fixed; /* or absolute */
