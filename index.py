@@ -1,10 +1,8 @@
-import urllib
-from urllib import requests, parse
-import json
+import os, json, urllib
+from urllib import request, parse
+import socket
 
-API_BASE="http://myhappyti.me:3000/textroommate"
-
-
+API_BASE = "http://myhappyti.me:3000/textroommate"
 
 def lambda_handler(event, context):
     if (event["session"]["application"]["applicationId"] !=
@@ -69,7 +67,7 @@ def text_roommate(intent):
                     "Please try again."
     reprompt_text = ""
     should_end_session = False 
-	#API_BASE[idCode]
+    #API_BASE[idCode]
     speech_output = "I will text your roommate for you. "
 
     if "Code" in intent["slots"]:
@@ -77,15 +75,25 @@ def text_roommate(intent):
 
         if (code_string != "unkn"):
             print("Gonna go find happy time now!")
-            data = parse.urlencode({"key": "1456"}).encode()
-            req = request.Request(API_BASE)
+            dat = parse.urlencode({"key": "1456"}).encode()
+            rip = "https://0s5f43f8a3t1.runkit.sh/"
+            req = request.Request("http://myhappyti.me:3000/textroommate")
             try:
+                print("hello")
                 # perform HTTP POST request
-                with request.urlopen(req, data) as f:
-                    print("It returned {}".format(str(f.read().decode('utf-8'))))
-            except Exception as e:
+                print(req)
+                print(API_BASE)
+                request.urlopen(req, dat)
+                # request.urlopen(req);
+                # print(f.geturl())
+                print("yikes")
+            except request.URLError:
+                print("url error")
+                pass
                 # something went wrong!
-                return e
+                # return e
+            except socket.timeout:
+                pass
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
