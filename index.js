@@ -24,7 +24,6 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.post('/', function(req, res){
-	console.log(req.body);
 	MongoClient.connect(url, function(err, db) {
 	  if (err) throw err;
 	  var doc = {
@@ -42,6 +41,7 @@ app.post('/', function(req, res){
 	  }
 	  db.collection("users").insertOne(doc, function(err, res){
 	  	if (err) throw err;
+		console.log(doc);
 	  	console.log("Inserted " + doc.roomie1 + "'s and " + doc.roomie2 + "'s contract!");
 	  	db.close();
 	  });
@@ -49,7 +49,9 @@ app.post('/', function(req, res){
 	res.render("goodbye");
 });
 
+app.post('/alexa', function(req, res){
 
+})
 
 
 app.listen(3000, function () {
