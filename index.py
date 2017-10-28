@@ -40,7 +40,6 @@ def on_intent(intent_request, session):
 
 def on_session_ended(session_ended_request, session):
     print("Ending session.")
-    # Cleanup goes here...
 
 def handle_session_end_request():
     card_title = "ME TIME - Thanks"
@@ -66,8 +65,7 @@ def text_roommate(intent):
     speech_output = "I cannot find your identification code. " \
                     "Please try again."
     reprompt_text = ""
-    should_end_session = False 
-    #API_BASE[idCode]
+    should_end_session = False
     speech_output = "I will text your roommate for you. "
 
     if "Code" in intent["slots"]:
@@ -80,18 +78,13 @@ def text_roommate(intent):
             req = request.Request("http://myhappyti.me:3000/textroommate")
             try:
                 print("hello")
-                # perform HTTP POST request
                 print(req)
                 print(API_BASE)
                 request.urlopen(req, dat)
-                # request.urlopen(req);
-                # print(f.geturl())
                 print("yikes")
             except request.URLError:
                 print("url error")
                 pass
-                # something went wrong!
-                # return e
             except socket.timeout:
                 pass
 
