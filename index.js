@@ -16,8 +16,19 @@ app.post('/', function(req, res){
 	console.log(req.body);
 	MongoClient.connect(url, function(err, db) {
 	  if (err) throw err;
-	  console.log("Database created!");
-	  db.close();
+	  var doc = {
+	  	"roomie1": req.body.roomie1,
+	  	"roomie1_number": req.body.roomie1_number,
+	  	"roomie1_email": req.body.roomie1_email,
+	  	"roomie2": req.body.roomie2,
+	  	"roomie2_number": req.body.roomie2_number,
+	  	"roomie2_email": req.body.roomie2_email
+	  }
+	  db.collection("users").insertOne(doc, function(err, res){
+	  	if (err) throw err;
+	  	console.log("Inserted " + doc.roomie1 + "'s and " + doc.roomie2 + "'s contract!");
+	  	db.close();
+	  });
 	});
 	res.render("goodbye");
 });
