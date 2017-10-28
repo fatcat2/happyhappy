@@ -1,0 +1,18 @@
+{
+  "session": {
+      "application": {
+          "applicationId": "aamzn1.ask.skill.6ab0cacf-e31a-4f5e-beef-b543b190ab34"
+      },
+      "new": true
+  },
+  "request":{
+      "type": "IntentRequest",
+      "requestId": 69,
+      "intent":{
+      	"name": "TextRoommate",
+      	"slots":{
+      		"name": "Code"
+      	}
+      }
+  }
+}

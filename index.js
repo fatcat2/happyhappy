@@ -29,6 +29,7 @@ app.post('/register', function(req, res){
 	  	charset: 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789'
 	  })
 	  var doc = {
+	  	"uname": req.body.username,
 	  	"roomie1": req.body.roomie1,
 	  	"roomie1_number": req.body.roomie1_number,
 	  	"roomie1_email": req.body.roomie1_email,
@@ -36,7 +37,7 @@ app.post('/register', function(req, res){
 	  	"roomie2_number": req.body.roomie2_number,
 	  	"roomie2_email": req.body.roomie2_email,
 	  	"password": req.body.password,
-	  	"confirm code": confirm_code
+	  	"confirm code": '1456'
 	  }
 	  db.collection("users").insertOne(doc, function(err, res){
 	  	if (err) throw err;
@@ -48,8 +49,8 @@ app.post('/register', function(req, res){
 	res.render("goodbye");
 });
 
-app.post('/alexa', function(req, res){
-
+app.post('/textroommate', function(req, res){
+	console.log("hey i work");
 });
 
 
