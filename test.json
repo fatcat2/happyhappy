@@ -11,7 +11,7 @@
       "intent":{
       	"name": "TextRoommate",
       	"slots":{
-      		"name": "Code"
+      		"Code": "1456"
       	}
       }
   }

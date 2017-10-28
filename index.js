@@ -53,6 +53,10 @@ app.post('/textroommate', function(req, res){
 	console.log("hey i work");
 });
 
+app.get('/textroommate', function(req, res){
+	res.send("Thanks for the info!");
+})
+
 
 app.listen(3000, function () {
 	console.log('App listening on port 3000!');
