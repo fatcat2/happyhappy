@@ -58,5 +58,5 @@ app.post('/', function(req, res){
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(8080, () => console.log("HTTP listening on 8080!"));
-httpsServer.listen(8443, () => console.log("HTTPS listening on 8443!"));
+httpServer.listen(80, () => console.log("HTTP listening on 8080!"));
+httpsServer.listen(443, () => console.log("HTTPS listening on 8443!"));
