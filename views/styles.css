@@ -7,13 +7,15 @@ h2{
 	text-align: center;
 }
 div.scroll{
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 div.signup_text{
 	/*text-align: center;*/
 	position: fixed; /* or absolute */
 	top: 50%;
 	left: 50%;
+	overflow: auto;
 	/* bring your own prefixes */
 	transform: translate(-50%, -50%);
 }
