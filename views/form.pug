@@ -1,22 +1,38 @@
 html
 html
 	head
-		title Form Tester
+		title sign up for myhapti.mep
+		link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css")
+		style
+			include styles.css
 	body
-		form(action = "/", method="POST")
-			div
-				label(for="roomie1") Roommate 1: 
-				input(name = "roomie1" value = "")
-				label(for="roomie1_number") Roommate 1 Number:  
-				input(name = "roomie1_number")
-			br
-			div
-				label(for = "roomie2") Roommate 2: 
-				input(name = "roomie2" value = "")
-				label(for="roomie2_number") Roommate 2 Number:  
-				input(name = "roomie2_number")
-			br
-			div
-				label(for = "room_pass") Password: 
-				input(type = "password" name = "room_pass")
-			button(type = "submit") Submit
+		div(class = "signup_text")
+			h2 register for myhappyti.me
+			form(action = "/", method="POST" class="signup")
+				div(class = "roomie1")
+					div
+						label(for="roomie1") Roommate 1: 
+						input(name = "roomie1" value = "")
+					div
+						label(for="roomie1_number") Roommate 1 Number:  
+						input(name = "roomie1_number")
+					div
+						label(for="roomie1_email") Roommate 1 Email:  
+						input(name = "roomie1_email")
+				br
+				div(class = "roomie2")
+					div
+						label(for = "roomie2") Roommate 2: 
+						input(name = "roomie2" value = "")
+					div
+						label(for="roomie2_number") Roommate 2 Number:  
+						input(name = "roomie2_number")
+					div
+						label(for="roomie2_email") Roommate 2 Email:  
+						input(name = "roomie2_email")
+				br
+				div
+					label(for = "room_pass") Password: 
+					input(type = "password" name = "room_pass")
+				br
+				button(class="btn waves-effect waves-light" type = "submit") Submit

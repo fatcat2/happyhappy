@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+body{
+	font-family: 'Roboto Slab', serif;
+}
+h2{
+	text-align: center;
+}
+div.signup_text{
+	/*text-align: center;*/
+	position: fixed; /* or absolute */
+	top: 50%;
+	left: 50%;
+	/* bring your own prefixes */
+	transform: translate(-50%, -50%);
+}
+div.goodbye_msg{
+	text-align: center;
+	vertical-align: middle;
+	position: fixed; /* or absolute */
+	top: 50%;
+	left: 50%;
+	/* bring your own prefixes */
+	transform: translate(-50%, -50%);
+}
