@@ -3,8 +3,8 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 
-var privateKey  = fs.readFileSync('domain.key', 'utf8');
-var certificate = fs.readFileSync('domain.crt', 'utf8');
+var privateKey  = fs.readFileSync('domain.key');
+var certificate = fs.readFileSync('domain.crt');
 var credentials = {
 	key: privateKey,
 	cert: certificate
@@ -15,9 +15,10 @@ var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://root:123@myhappytime-shard-00-00-mqmxc.mongodb.net:27017,myhappytime-shard-00-01-mqmxc.mongodb.net:27017,myhappytime-shard-00-02-mqmxc.mongodb.net:27017/happy_data?ssl=true&replicaSet=myhappytime-shard-0&authSource=admin"
 var randomstring = require('randomstring');
+var forceSsl = require('express-force-ssl');
 
 app.use(bodyParser());
-
+app.use(forceSsl);
 app.get('/', function(req, res){
 	res.render('form');
 });
