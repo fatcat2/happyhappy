@@ -5,6 +5,10 @@ var https = require('https');
 
 var privateKey  = fs.readFileSync('domain.key', 'utf8');
 var certificate = fs.readFileSync('domain.crt', 'utf8');
+var credentials = {
+	key: privateKey,
+	cert: certificate
+}
 
 var app = express();
 var bodyParser = require('body-parser');
