@@ -67,15 +67,15 @@ app.post('/textroommate', function(req, res){
 		var code = req.body.key;
 		db.collection("users").find({"code:" code}).toArray(function(err, result){
 			if (err) throw err;
-			console,log(result);
+			console.log(result);
+			client.messages.create({ 
+				to: '+14087755735',
+				from: twilio_num,
+				body: 'Hey I need the room for a bit! Thanks for being patient!',
+			})
 		})
 		db.close();
 	})
-	client.messages.create({ 
-			to: '+14087755735',
-			from: twilio_num,
-			body: 'Hey I need the room for a bit! Thanks for being patient!',
-		})
 });
 
 app.get('/textroommate', function(req, res){
