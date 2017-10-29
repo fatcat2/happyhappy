@@ -117,7 +117,7 @@ app.post('/textroommate', function(req, res){
 							client.messages.create({ 
 								to: roomie.number,
 								from: twilio_num,
-								body: 'Hey I need the room for a bit! Thanks for being patient!'\
+								body: 'Hey I need the room for a bit! Thanks for being patient!'
 							});
 						}
 					}
