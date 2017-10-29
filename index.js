@@ -64,16 +64,23 @@ app.post('/test', function(req, res){
 	console.log(req.body);
 	res.send("SUCCESS");
 	var x = req.body.key;
-	console.log(req.body.key);
-	//var y = JSON.parse(x);
 	console.log(x);
+	var y = x.split(',');
+	console.log(y[1]);
+	var z = y[1].replace(/\D/g, "");
+	console.log(parseInt(z));
 });
 
 app.post('/textroommate', function(req, res){
 	res.send("SUCCESS");
 	MongoClient.connect(url, function(err, db){
 		if (err) throw err;
-		var code = req.body;
+		console.log(req.body);
+		var x = req.body.key;
+		console.log(x);
+		var y = x.split(',');
+		console.log(y);
+		var code = y[1].replace(/\D/g, "");
 		console.log(code);
 		db.collection("users").find({"code": code }).toArray(function(err, result){
 			if (err) throw err;
