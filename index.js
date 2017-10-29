@@ -83,8 +83,7 @@ app.get('/textroommate', function(req, res){
 });
 
 app.get('/sendmsg',function(req, res){
-	client.messages
-		create({ 
+	client.messages.create({ 
 			to: '+14087755735',
 			from: twilio_num,
 			body: 'Hey I need the room for a bit! Thanks for being patient!',
