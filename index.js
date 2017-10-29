@@ -124,7 +124,7 @@ app.post('/textroommate', function(req, res){
 				console.log(roomie);
 				if (err1) throw err1;
 				console.log("found the group");
-				if(roomie.code != result[0].code){
+				if(roomie.code != target_user.code){
 					client.messages.create({ 
 						to: roomie.number,
 						from: twilio_num,
