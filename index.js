@@ -112,7 +112,7 @@ app.post('/textroommate', function(req, res){
 		collection.findOne({code: code }, function(err, result){
 			if (err) throw err;
 			if(result){
-				res.send(1);
+				res.send("SUCCESS");
 				console.log("found the user");
 				console.log(target_user);
 				target_user = result;
@@ -132,7 +132,7 @@ app.post('/textroommate', function(req, res){
 				// });
 			}else{
 				console.log("Couldn't find it!");
-				res.send(0);
+				res.send("FAIL");
 			}
 		});
 		/*
