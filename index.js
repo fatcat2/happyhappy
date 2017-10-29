@@ -1,11 +1,16 @@
 var express = require('express');
-var emoji = require('node-emoji');
-// var wink = emoji.get
 var app = express();
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://root:123@myhappytime-shard-00-00-mqmxc.mongodb.net:27017,myhappytime-shard-00-01-mqmxc.mongodb.net:27017,myhappytime-shard-00-02-mqmxc.mongodb.net:27017/happy_data?ssl=true&replicaSet=myhappytime-shard-0&authSource=admin"
 var randomstring = require('randomstring');
+
+
+var twilio_sid = "PN65618436762b885397ea4687c255090b";
+var twilio_auth = "f434c2ec44243f778e986d079a2f755d";
+var twilio_num = "+17656370247";
+const client = require('twilio')(twilio_sid, twilio_auth);
+
 
 app.use(bodyParser());
 
@@ -58,12 +63,15 @@ app.get('/textroommate', function(req, res){
 	console.log("Thanks for the info!");
 });
 
+app.get('/sendmsg',function(req, res){
+	client.messages
+		create({ 
+			to: '+14087755735',
+			from: twilio_num,
+			body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+		}).then((message) => console.log(message.sid));
+});
 
 app.listen(3000, function () {
 	console.log('App listening on port 3000!');
 });
-// var httpServer = http.createServer(app);
-// var httpsServer = https.createServer(credentials, app);
-
-// httpServer.listen(80, () => console.log("HTTP listening on 8080!"));
-// httpsServer.listen(443, () => console.log("HTTPS listening on 8443!"));
