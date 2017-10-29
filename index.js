@@ -119,10 +119,10 @@ app.post('/textroommate', function(req, res){
 		});
 		try{
 			var gc = target_user.group_code;
-			db.collection("users").findOne({"code": {$not: code }, "group_code": gc}, function(err1, roomie) {
-			console.log(gc);
-			console.log(roomie);
-			if (err1) throw err1;
+			db.collection("users").findOne({"code": {$not: {$eq: code} }, "group_code": gc}, function(err1, roomie) {
+				console.log(gc);
+				console.log(roomie);
+				if (err1) throw err1;
 				console.log("found the group");
 				if(roomie.code != result[0].code){
 					client.messages.create({ 
