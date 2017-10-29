@@ -65,7 +65,7 @@ app.post('/textroommate', function(req, res){
 	MongoClient.connect(url, function(err, db){
 		if (err) throw err;
 		var code = req.body.key;
-		db.collection("users").find({"code:" code}).toArray(function(err, result){
+		db.collection("users").find({"code": code }).toArray(function(err, result){
 			if (err) throw err;
 			console.log(result);
 			client.messages.create({ 
