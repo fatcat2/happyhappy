@@ -112,7 +112,7 @@ app.post('/textroommate', function(req, res){
 			if(result.length > 0){
 				console.log("found the user");
 				var gc = result[0].group_code;
-				db.collection("users").findOne({"code": {$not: code }, "group_code": gc}, function(err, roomie) {
+				db.collection("users").findOne({"code": {$not: code }, "group_code": gc}, function(err1, roomie) {
 					console.log(gc);
 					console.log(roomie);
 					if (err1) throw err1;
