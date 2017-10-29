@@ -73,7 +73,7 @@ app.get('/sendmsg',function(req, res){
 		create({ 
 			to: '+14087755735',
 			from: twilio_num,
-			body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+			body: 'Boi GTFO of the room imma need it tyty',
 		}).then((message) => console.log(message.sid));
 });
 
