@@ -73,18 +73,20 @@ app.post('/test', function(req, res){
 
 app.post('/textroommate', function(req, res){
 	res.send("SUCCESS");
+	// var _result 
 	MongoClient.connect(url, function(err, db){
 		if (err) throw err;
-		console.log(req.body);
+		// console.log(req.body);
 		var x = req.body.key;
-		console.log(x);
+		// console.log(x);
 		var y = x.split(',');
-		console.log(y);
+		// console.log(y);
 		var code = y[1].replace(/\D/g, "");
-		console.log(code);
+		// console.log(code);
 		db.collection("users").find({"code": code }).toArray(function(err, result){
 			if (err) throw err;
 			if(result.length > 0){
+				console.log(result);
 				client.messages.create({ 
 					to: '+14087755735',
 					from: twilio_num,
