@@ -9,6 +9,7 @@ var twilio = require('twilio');
 var twilio_sid = "AC93e381fa9a774070dbb9548bd20bfd1c";
 var twilio_auth = "f434c2ec44243f778e986d079a2f755d";
 var twilio_num = "+17656370247";
+var target_user = {"hello":99};
 const client = new twilio(twilio_sid, twilio_auth);
 
 
@@ -102,40 +103,33 @@ app.post('/textroommate', function(req, res){
 	res.send("SUCCESS");
 	// var _result 
 	MongoClient.connect(url, function(err, db){
+		var collection = db.collection("users");
 		if (err) throw err;
 		var x = req.body.key;
 		var y = x.split(',');
 		var code = y[1].replace(/\D/g, "");
 		console.log("connected");
-		var target_user = {"group_code":""};
-		db.collection("users").find({"code": code }).toArray(function(err, result){
+		collection.find({"code": code }).toArray(function(err, result){
 			if (err) throw err;
 			if(result.length > 0){
 				console.log("found the user");
+				console.log(target_user);
 				target_user = result[0];
+				console.log(target_user);
+				collection.findOne({"group_code": target_user.group_code}, function(err, rez){
+					console.log(target_user.group_code);
+					console.log(rez);
+				});
+				
 			}else{
 				console.log("Couldn't find it!");
 			}
 		});
-		try{
-			var gc = target_user.group_code;
-			db.collection("users").findOne({"code": {$not: {$eq: code} }, "group_code": gc}, function(err1, roomie) {
-				console.log(gc);
-				console.log(roomie);
-				if (err1) throw err1;
-				console.log("found the group");
-				if(roomie.code != target_user.code){
-					client.messages.create({ 
-						to: roomie.number,
-						from: twilio_num,
-						body: 'Hey I need the room for a bit! Thanks for being patient!'
-					});
-				}
-			});
-		}catch(e){
-			console.log("ERORRROR");
-			console.log(e);
-		}
+		/*
+		collection.findOne({"group_code": target_user.group_code}, function(err, result){
+			console.log(target_user.group_code);
+			console.log(result);
+		});*/ 
 
 		
 		db.close();
