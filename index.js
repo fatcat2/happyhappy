@@ -131,6 +131,7 @@ app.post('/textroommate', function(req, res){
 				// });
 			}else{
 				console.log("Couldn't find it!");
+				res.send("FAILURE");
 			}
 		});
 		/*
