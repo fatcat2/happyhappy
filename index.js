@@ -31,7 +31,7 @@ app.post('/register', function(req, res){
 	  if (err) throw err;
 	  var confirm_code = randomstring.generate({
 	  	length: 4,
-	  	charset: 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789'
+	  	charset: '123456789'
 	  })
 	  var doc = {
 	  	"uname": req.body.username,
