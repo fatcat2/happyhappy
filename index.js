@@ -117,7 +117,7 @@ app.post('/textroommate', function(req, res){
 					console.log(roomies);
 					if (err1) throw err1;
 					console.log("found the group");
-					var roomie;
+					// var roomie;
 					for(roomie in roomies){
 						if(roomie.code != result[0].code){
 							client.messages.create({ 
