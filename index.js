@@ -111,6 +111,7 @@ app.post('/textroommate', function(req, res){
 			if(result.length > 0){
 				db.collection("users").find({"group_code": result[0].group_code}).toArray(function(err, roomies){
 					if (err) throw err;
+					var roomie;
 					for roomie of roomies{
 						if(roomie.code != result[0].code){
 							client.messages.create({ 
