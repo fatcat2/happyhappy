@@ -107,7 +107,7 @@ app.post('/textroommate', function(req, res){
 		var y = x.split(',');
 		var code = y[1].replace(/\D/g, "");
 		console.log("connected");
-		var target_user = {group_code=""};
+		var target_user = {"group_code":""};
 		db.collection("users").find({"code": code }).toArray(function(err, result){
 			if (err) throw err;
 			if(result.length > 0){
