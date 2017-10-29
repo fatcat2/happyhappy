@@ -114,7 +114,7 @@ app.post('/textroommate', function(req, res){
 			if(result){
 				console.log("found the user");
 				console.log(target_user);
-				target_user = result[0];
+				target_user = result;
 				console.log(target_user);
 				// collection.findOne({"group_code": target_user.group_code}, {_id: 0, "name": 0}, function(err, rez){
 				// 	console.log(target_user.group_code);
