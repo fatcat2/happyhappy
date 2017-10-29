@@ -135,7 +135,7 @@ app.post('/textroommate', function(req, res){
 		});*/ 
 
 		
-		db.close();
+		// db.close();
 	});
 });
 
