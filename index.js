@@ -113,7 +113,7 @@ app.post('/textroommate', function(req, res){
 				console.log("found the user");
 				db.collection("users").find({"group_code": result[0].group_code}).toArray(function(err, roomies){
 					if (err) throw err;
-					console.log("found the group")
+					console.log("found the group");
 					var roomie;
 					for(roomie in roomies){
 						if(roomie.code != result[0].code){
@@ -124,11 +124,11 @@ app.post('/textroommate', function(req, res){
 							});
 						}
 					}
-				})
+				});
 			}else{
 				console.log("Couldn't find it!");
 			}
-		})
+		});
 		db.close();
 	})
 });
