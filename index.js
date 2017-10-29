@@ -112,25 +112,31 @@ app.post('/textroommate', function(req, res){
 			if (err) throw err;
 			if(result.length > 0){
 				console.log("found the user");
-				target_user = result[0]
+				target_user = result[0];
 			}else{
 				console.log("Couldn't find it!");
 			}
 		});
-		var gc = target_user.group_code;
-		db.collection("users").findOne({"code": {$not: code }, "group_code": gc}, function(err1, roomie) {
+		try{
+			var gc = target_user.group_code;
+			db.collection("users").findOne({"code": {$not: code }, "group_code": gc}, function(err1, roomie) {
 			console.log(gc);
 			console.log(roomie);
 			if (err1) throw err1;
-			console.log("found the group");
-			if(roomie.code != result[0].code){
-				client.messages.create({ 
-					to: roomie.number,
-					from: twilio_num,
-					body: 'Hey I need the room for a bit! Thanks for being patient!'
-				});
-			}
-		});
+				console.log("found the group");
+				if(roomie.code != result[0].code){
+					client.messages.create({ 
+						to: roomie.number,
+						from: twilio_num,
+						body: 'Hey I need the room for a bit! Thanks for being patient!'
+					});
+				}
+			});
+		}catch(e){
+			logMyErrors(e);
+		}
+
+		
 		db.close();
 	});
 });
