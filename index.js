@@ -6,10 +6,10 @@ var url = "mongodb://root:123@myhappytime-shard-00-00-mqmxc.mongodb.net:27017,my
 var randomstring = require('randomstring');
 
 var twilio = require('twilio');
-var twilio_sid = "PN65618436762b885397ea4687c255090b";
+var twilio_sid = "AC93e381fa9a774070dbb9548bd20bfd1c";
 var twilio_auth = "f434c2ec44243f778e986d079a2f755d";
 var twilio_num = "+17656370247";
-const client = new twilio('AC93e381fa9a774070dbb9548bd20bfd1c', 'f434c2ec44243f778e986d079a2f755d');
+const client = new twilio(twilio_sid, twilio_auth);
 
 
 app.use(bodyParser());
@@ -33,39 +33,53 @@ app.post('/register', function(req, res){
 	  	length: 4,
 	  	charset: '123456789'
 	  })
-	  var doc = {
-	  	"uname": req.body.username,
-	  	"roomie1": req.body.roomie1,
-	  	"roomie1_number": req.body.roomie1_number,
-	  	"roomie1_email": req.body.roomie1_email,
-	  	"roomie2": req.body.roomie2,
-	  	"roomie2_number": req.body.roomie2_number,
-	  	"roomie2_email": req.body.roomie2_email,
-	  	"password": req.body.password,
-	  	"confirm code": '1456'
+	  var group_id = "6969";
+	  var doc1 = {
+	  	"name": req.body.roomie1,
+	  	"number": req.body.roomie1_number,
+	  	"email": req.body.roomie1_email,
+	  	"code": "1111",
+	  	"group_code": group_id
 	  }
-	  db.collection("users").insertOne(doc, function(err, res){
+	  var doc2 = {
+	  	"name": req.body.roomie2,
+	  	"number": req.body.roomie2_number,
+	  	"email": req.body.roomie2_email,
+	  	"code": "0000",
+	  	"group_code": group_id
+	  }
+	  db.collection("users").insertOne(doc1, function(err, res){
 	  	if (err) throw err;
-		console.log(doc);
-	  	console.log("Inserted " + doc.roomie1 + "'s and " + doc.roomie2 + "'s contract!");
-	  	db.close();
 	  });
+	  db.collection("users").insertOne(doc2, function(err, res){
+	  	if (err) throw err;
+	  });
+	  console.log("Inserted " + doc1.name + " and " + doc2 + "'s info!\nWelcome!\n--------\n");
+	  db.close();
 	});
 	res.render("goodbye");
 });
 
 app.post('/textroommate', function(req, res){
-	res.send("Hi there");
-	console.log("hey i work");
+	res.send("SUCCESS");
+	MongoClient.connect(url, function(err, db){
+		if (err) throw err;
+		var code = req.body.key;
+		db.collection("users").find({"code:" code}).toArray(function(err, result){
+			if (err) throw err;
+			console,log(result);
+		})
+		db.close();
+	})
 	client.messages.create({ 
 			to: '+14087755735',
 			from: twilio_num,
-			body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-		}).then((message) => console.log(message.sid));
+			body: 'Hey I need the room for a bit! Thanks for being patient!',
+		})
 });
 
 app.get('/textroommate', function(req, res){
-	console.log("Thanks for the info!");
+	console.log("Thanks for the info!\n--------");
 });
 
 app.get('/sendmsg',function(req, res){
@@ -73,10 +87,10 @@ app.get('/sendmsg',function(req, res){
 		create({ 
 			to: '+14087755735',
 			from: twilio_num,
-			body: 'Boi GTFO of the room imma need it tyty',
-		}).then((message) => console.log(message.sid));
+			body: 'Hey I need the room for a bit! Thanks for being patient!',
+		})
 });
 
 app.listen(3000, function () {
-	console.log('App listening on port 3000!');
+	console.log('App listening on port 3000!\n--------');
 });
