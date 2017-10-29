@@ -120,7 +120,7 @@ app.post('/textroommate', function(req, res){
 				// 	console.log(target_user.group_code);
 				// 	console.log(rez);
 				// });
-				collection.find({}).toArray(function(err,rez){
+				collection.find({group_code: result.group_code}).toArray(function(err,rez){
 					console.log(rez);
 				});
 			}else{
