@@ -117,8 +117,13 @@ app.post('/textroommate', function(req, res){
 				target_user = result;
 				console.log(target_user);
 				collection.findOne({code: {$not: {$eq: code}}, "group_code": target_user.group_code}, function(err, rez){
-					console.log(target_user.group_code);
-					console.log(rez);
+					// console.log(target_user.group_code);
+					// console.log(rez);
+					client.messages.create({
+						to: rez.number,
+						from: twilio_num,
+						body: "I need to use the room for a bit, thanks for your patience!"
+					});
 				});
 				// collection.find({group_code: "7189"}).toArray(function(err,rez){
 				// 	console.log(result.group_code);
