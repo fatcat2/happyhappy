@@ -109,11 +109,12 @@ app.post('/textroommate', function(req, res){
 		db.collection("users").find({"code": code }).toArray(function(err, result){
 			if (err) throw err;
 			if(result.length > 0){
-				db.collection("users").find({"group_code": result[0].group_code}).toArray(function(err, roomie){
-					for x of roomie{
-						if(x.code != result[0].code){
+				db.collection("users").find({"group_code": result[0].group_code}).toArray(function(err, roomies){
+					if (err) throw err;
+					for roomie of roomies{
+						if(roomie.code != result[0].code){
 							client.messages.create({ 
-								to: x.number,
+								to: roomie.number,
 								from: twilio_num,
 								body: 'Hey I need the room for a bit! Thanks for being patient!'\
 							});
