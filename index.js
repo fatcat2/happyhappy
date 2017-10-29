@@ -129,13 +129,13 @@ app.post('/textroommate', function(req, res){
 							}
 						}
 					});
-				}
+				});
 			}else{
 				console.log("Couldn't find it!");
 			}
 		});
 		db.close();
-	}
+	});
 });
 
 app.get('/textroommate', function(req, res){
