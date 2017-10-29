@@ -116,11 +116,13 @@ app.post('/textroommate', function(req, res){
 				console.log(target_user);
 				target_user = result[0];
 				console.log(target_user);
-				collection.findOne({"group_code": target_user.group_code}, {_id: 0, "name": 0}, function(err, rez){
-					console.log(target_user.group_code);
+				// collection.findOne({"group_code": target_user.group_code}, {_id: 0, "name": 0}, function(err, rez){
+				// 	console.log(target_user.group_code);
+				// 	console.log(rez);
+				// });
+				collection.find({}).toArray(function(err,rez){
 					console.log(rez);
 				});
-				
 			}else{
 				console.log("Couldn't find it!");
 			}
