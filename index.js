@@ -90,13 +90,6 @@ app.post('/register', function(req, res){
 
 app.post('/test', function(req, res){
 	console.log(req.body);
-	res.send("SUCCESS");
-	var x = req.body.key;
-	console.log(x);
-	var y = x.split(',');
-	console.log(y[1]);
-	var z = y[1].replace(/\D/g, "");
-	console.log(parseInt(z));
 });
 
 app.post('/textroommate', function(req, res){
