@@ -57,6 +57,12 @@ app.post('/register', function(req, res){
 app.post('/textroommate', function(req, res){
 	res.send("Hi there");
 	console.log("hey i work");
+	client.messages
+		create({ 
+			to: '+14087755735',
+			from: twilio_num,
+			body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+		}).then((message) => console.log(message.sid));
 });
 
 app.get('/textroommate', function(req, res){
