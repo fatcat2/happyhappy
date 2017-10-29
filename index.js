@@ -112,10 +112,10 @@ app.post('/textroommate', function(req, res){
 			if(result.length > 0){
 				console.log("found the user");
 				var gc = result[0].group_code;
-				db.collection("users").find({"group_code": gc}).toArray(function(err, roomies){
-					console.log(result[0].group_code);
+				db.collection("users").find({"group_code": gc}).toArray(function(err1, roomies){
+					console.log(gc);
 					console.log(roomies);
-					if (err) throw err;
+					if (err1) throw err1;
 					console.log("found the group");
 					var roomie;
 					for(roomie in roomies){
