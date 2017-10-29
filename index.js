@@ -109,9 +109,9 @@ app.post('/textroommate', function(req, res){
 		var y = x.split(',');
 		var code = y[1].replace(/\D/g, "");
 		console.log("connected");
-		collection.find({code: code }).toArray(function(err, result){
+		collection.findOne({code: code }, function(err, result){
 			if (err) throw err;
-			if(result.length > 0){
+			if(result){
 				console.log("found the user");
 				console.log(target_user);
 				target_user = result[0];
