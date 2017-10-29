@@ -121,6 +121,7 @@ app.post('/textroommate', function(req, res){
 				// 	console.log(rez);
 				// });
 				collection.find({group_code: "7189"}).toArray(function(err,rez){
+					console.log(result.group_code);
 					console.log(rez);
 				});
 			}else{
