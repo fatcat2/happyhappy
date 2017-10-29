@@ -133,7 +133,8 @@ app.post('/textroommate', function(req, res){
 				}
 			});
 		}catch(e){
-			logMyErrors(e);
+			console.log("ERORRROR");
+			console.log(e);
 		}
 
 		
