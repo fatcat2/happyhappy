@@ -86,9 +86,9 @@ app.post('/textroommate', function(req, res){
 		db.collection("users").find({"code": code }).toArray(function(err, result){
 			if (err) throw err;
 			if(result.length > 0){
-				console.log(result);
+				var doc = result.body;
 				client.messages.create({ 
-					to: '+14087755735',
+					to: doc.number,
 					from: twilio_num,
 					body: 'Hey I need the room for a bit! Thanks for being patient!',
 				})
